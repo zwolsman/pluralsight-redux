@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Main from "./components/Main";
+import Main from "./components/common/Main";
+import Header from "./components/common/Header";
 
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <p>Header here</p>
+      <div className="container">
+        <Header />
         <Main />
       </div>
     );
