@@ -11,6 +11,10 @@ export default () => {
       <NavLink to="/about" activeClassName="active">
         About
       </NavLink>
+      {" | "}
+      <NavLink to="/courses" activeClassName="active">
+        Courses
+      </NavLink>
     </nav>
   );
 };
