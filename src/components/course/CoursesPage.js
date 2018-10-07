@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createCourse } from "../store/actions/courseActions";
+import * as courseActions from "../store/actions/courseActions";
+import { bindActionCreators } from "../../../../../Library/Caches/typescript/3.0/node_modules/redux";
 
 class CoursesPage extends Component {
   constructor(props, context) {
@@ -18,7 +19,7 @@ class CoursesPage extends Component {
   };
 
   onClickSave = () => {
-    this.props.dispatch(createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   };
 
   courseRow(course, index) {
@@ -31,18 +32,37 @@ class CoursesPage extends Component {
         <h1>Courses Page</h1>
         {this.props.courses.map(this.courseRow)}
         <h2>Add Course</h2>
-        <input
-          type="text"
-          onChange={this.onTitleChange}
-          value={this.state.course.title}
-        />
 
-        <input type="submit" value="Save" onClick={this.onClickSave} />
+        <div className="form-group">
+          <input
+            className="form-control"
+            type="text"
+            onChange={this.onTitleChange}
+            value={this.state.course.title}
+          />
+        </div>
+        <input
+          className="btn btn-primary"
+          type="submit"
+          value="Save"
+          onClick={this.onClickSave}
+        />
       </div>
     );
   }
 }
+
 function mapStateToProps(state, ownProps) {
   return { courses: state.courses };
 }
-export default connect(mapStateToProps)(CoursesPage);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    ...bindActionCreators(courseActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoursesPage);
