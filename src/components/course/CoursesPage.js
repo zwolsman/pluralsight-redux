@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createCourse } from "../store/actions/courseActions";
 
-export default class CoursesPage extends Component {
+class CoursesPage extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -15,13 +17,19 @@ export default class CoursesPage extends Component {
     this.setState({ course });
   };
 
-  onClickSave() {
-    console.log("Save");
+  onClickSave = () => {
+    this.props.dispatch(createCourse(this.state.course));
+  };
+
+  courseRow(course, index) {
+    return <div key={index}>{course.title}</div>;
   }
+
   render() {
     return (
       <div>
         <h1>Courses Page</h1>
+        {this.props.courses.map(this.courseRow)}
         <h2>Add Course</h2>
         <input
           type="text"
@@ -34,3 +42,7 @@ export default class CoursesPage extends Component {
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  return { courses: state.courses };
+}
+export default connect(mapStateToProps)(CoursesPage);
