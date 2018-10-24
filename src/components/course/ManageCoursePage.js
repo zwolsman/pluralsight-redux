@@ -22,6 +22,7 @@ class ManageCoursePage extends Component {
   saveCourse = event => {
     event.preventDefault();
     this.props.saveCourse(this.state.course);
+    this.props.history.push("/courses");
   };
 
   render() {
