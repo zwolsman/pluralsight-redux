@@ -38,12 +38,18 @@ class ManageCoursePage extends Component {
   }
 }
 
+function getCourseById(courseId, courses = []) {
+  const result = courses.filter(course => course.id === courseId);
+  if (result) return result[0];
+  return null;
+}
+
 function mapStateToProps(state, ownProps) {
   const authorOptions = state.authors.map(({ id, firstName, lastName }) => {
     return { value: id, text: `${firstName} ${lastName}` };
   });
 
-  const course = {
+  let course = {
     id: "",
     watchHref: "",
     title: "",
@@ -51,6 +57,11 @@ function mapStateToProps(state, ownProps) {
     length: "",
     category: ""
   };
+
+  const courseId = ownProps.match.params.id;
+  if (courseId && state.courses.length > 0) {
+    course = getCourseById(courseId, state.courses);
+  }
 
   return {
     course,
