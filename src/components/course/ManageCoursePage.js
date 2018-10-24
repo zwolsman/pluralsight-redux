@@ -19,6 +19,11 @@ class ManageCoursePage extends Component {
     return this.setState({ course });
   };
 
+  saveCourse = event => {
+    event.preventDefault();
+    this.props.saveCourse(this.state.course);
+  };
+
   render() {
     return (
       <CourseForm
@@ -26,6 +31,7 @@ class ManageCoursePage extends Component {
         errors={this.state.errors}
         allAuthors={this.props.authors}
         onChange={this.updateCourseState}
+        onSave={this.saveCourse}
       />
     );
   }

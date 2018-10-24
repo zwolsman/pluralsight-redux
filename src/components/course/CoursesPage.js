@@ -5,11 +5,21 @@ import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
 
 class CoursesPage extends Component {
+  redirectToAddCoursePage = () => {
+    this.props.history.push("/course");
+  };
+
   render() {
     const { courses } = this.props;
     return (
       <div>
-        <h1>Courses Page</h1>
+        <h1>Courses</h1>
+        <input
+          type="submit"
+          value="Add course"
+          className="btn btn-primary mb-3"
+          onClick={this.redirectToAddCoursePage}
+        />
         <CourseList courses={courses} />
       </div>
     );

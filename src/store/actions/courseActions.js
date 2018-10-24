@@ -39,7 +39,7 @@ export function saveCourse(course) {
     if (course.id) {
       dispatch(updateCourseSuccess(savedCourse));
     } else {
-      dispatch(createCourseSuccess(saveCourse));
+      dispatch(createCourseSuccess(savedCourse));
     }
   };
 }
