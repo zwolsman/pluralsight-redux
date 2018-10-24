@@ -6,11 +6,8 @@ export function loadAuthorsSuccess(authors) {
 }
 
 export function loadAuthors() {
-  return dispatch => {
-    return AuthorApi.getAllAuthors()
-      .then(authors => dispatch(loadAuthorsSuccess(authors)))
-      .catch(err => {
-        throw err;
-      });
+  return async dispatch => {
+    const authors = await AuthorApi.getAllAuthors();
+    return dispatch(loadAuthorsSuccess(authors));
   };
 }
