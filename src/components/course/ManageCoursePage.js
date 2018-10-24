@@ -16,13 +16,17 @@ class ManageCoursePage extends Component {
       <CourseForm
         course={this.state.course}
         errors={this.state.errors}
-        allAuthors={[]}
+        allAuthors={this.props.authors}
       />
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
+  const authorOptions = state.authors.map(({ id, firstName, lastName }) => {
+    return { value: id, text: `${firstName} ${lastName}` };
+  });
+
   const course = {
     id: "",
     watchHref: "",
@@ -33,7 +37,8 @@ function mapStateToProps(state, ownProps) {
   };
 
   return {
-    course
+    course,
+    authors: authorOptions
   };
 }
 function mapDispatchToProps(dispatch) {
