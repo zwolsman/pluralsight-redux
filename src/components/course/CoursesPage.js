@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as courseActions from "../store/actions/courseActions";
-import { bindActionCreators } from "../../../../../Library/Caches/typescript/3.0/node_modules/redux";
+import { bindActionCreators } from "redux";
+import CourseList from "./CourseList";
 
 class CoursesPage extends Component {
   constructor(props, context) {
@@ -22,15 +23,12 @@ class CoursesPage extends Component {
     this.props.createCourse(this.state.course);
   };
 
-  courseRow(course, index) {
-    return <div key={index}>{course.title}</div>;
-  }
-
   render() {
+    const { courses } = this.props;
     return (
       <div>
         <h1>Courses Page</h1>
-        {this.props.courses.map(this.courseRow)}
+        <CourseList courses={courses} />
         <h2>Add Course</h2>
 
         <div className="form-group">
