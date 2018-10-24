@@ -11,12 +11,21 @@ class ManageCoursePage extends Component {
       errors: {}
     };
   }
+
+  updateCourseState = event => {
+    const field = event.target.name;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({ course });
+  };
+
   render() {
     return (
       <CourseForm
         course={this.state.course}
         errors={this.state.errors}
         allAuthors={this.props.authors}
+        onChange={this.updateCourseState}
       />
     );
   }
@@ -41,6 +50,7 @@ function mapStateToProps(state, ownProps) {
     authors: authorOptions
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     ...bindActionCreators(courseActions, dispatch)
