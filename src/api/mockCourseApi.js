@@ -78,7 +78,9 @@ class CourseApi {
         }
 
         if (course.id) {
-          const existingCourseIndex = courses.findIndex(a => a.id == course.id);
+          const existingCourseIndex = courses.findIndex(
+            a => a.id === course.id
+          );
           courses.splice(existingCourseIndex, 1, course);
         } else {
           //Just simulating creation here.

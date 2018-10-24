@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as courseActions from "../store/actions/courseActions";
+import * as courseActions from "../../store/actions/courseActions";
 import { bindActionCreators } from "redux";
 import CourseList from "./CourseList";
 
