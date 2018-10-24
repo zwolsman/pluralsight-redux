@@ -25,6 +25,12 @@ class ManageCoursePage extends Component {
     this.props.history.push("/courses");
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.course.id !== nextProps.course.id) {
+      this.setState({ course: Object.assign({}, nextProps.course) });
+    }
+  }
+
   render() {
     return (
       <CourseForm
